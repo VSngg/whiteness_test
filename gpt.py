@@ -6,7 +6,7 @@ import os
 
 def process_images(filenames):
     for filename in filenames:
-        img = cv2.imread(filename)
+        img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
         Lchannel = img[:,:,1]
         mean_brightness = np.mean(Lchannel)
